@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {ShortService} from './short.service';
 
 @Component({
   selector: 'app-short',
@@ -9,9 +10,15 @@ export class ShortComponent implements OnInit {
   @Input()
   url: string;
 
-  constructor() {}
+  result: string;
 
-  ngOnInit() {}
+  constructor(private shortService: ShortService) {
+  }
 
-  shortenUrl() {}
+  ngOnInit() {
+  }
+
+  shortenUrl() {
+    this.shortService.shortenUrl({long: this.url, short: ''}).subscribe(res => (this.result = res.link.short));
+  }
 }
