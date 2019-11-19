@@ -1,6 +1,5 @@
-<mat-toolbar>
-  <span>short</span>
-</mat-toolbar>
-<div class="container">
-  <router-outlet></router-outlet>
+<div id="unsplash-image" [style.background-image]="backgroundUrlCss$ | async">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

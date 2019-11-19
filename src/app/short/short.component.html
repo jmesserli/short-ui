@@ -1,8 +1,10 @@
-<h1>PegNu short</h1>
-
-<mat-form-field appearance="outline">
-  <mat-label>URL to shorten</mat-label>
-  <input matInput type="url" placeholder="https://lorem.ipsum/long/path" [(ngModel)]="url"/>
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="shortenUrl()">Shorten</button>
-<p *ngIf="result">{{result}}</p>
+<div class="full-height-centered">
+  <mat-card>
+    <mat-form-field appearance="fill">
+      <mat-label>URL to shorten</mat-label>
+      <input matInput type="url" placeholder="https://lorem.ipsum/long/path" [(ngModel)]="url"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="shortenUrl()">Shorten</button>
+    <a *ngIf="result" href="https://peg.nu/{{result}}">https://peg.nu/{{result}}</a>
+  </mat-card>
+</div>
