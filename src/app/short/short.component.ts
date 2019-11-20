@@ -9,7 +9,10 @@ import {ShortService} from './short.service';
 export class ShortComponent implements OnInit {
   @Input()
   url: string;
+  @Input()
+  shortUrl: string;
 
+  editing: boolean;
   result: string;
 
   constructor(private shortService: ShortService) {
@@ -19,6 +22,6 @@ export class ShortComponent implements OnInit {
   }
 
   shortenUrl() {
-    this.shortService.shortenUrl({long: this.url, short: ''}).subscribe(res => (this.result = res.link.short));
+    this.shortService.shortenUrl({long: this.url, short: this.shortUrl}).subscribe(res => (this.result = res.link.short));
   }
 }

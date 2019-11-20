@@ -1,7 +1,21 @@
 :host {
 
-  mat-form-field {
-    width: 100%;
+  .input-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .flex-grow {
+    flex-grow: 1;
+  }
+
+  .edit-button {
+    position: relative;
+    top: -10px;
+  }
+
+  .edit-button, .short-url {
+    margin-left: 5px;
   }
 
   .full-height-centered {
