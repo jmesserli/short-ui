@@ -12,6 +12,46 @@
     background-size: cover;
   }
 
+  #unsplash-attribution {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: 20px;
+
+    margin: 0 0 20px 20px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    display: flex;
+    align-items: center;
+
+    span, a {
+      margin: 0;
+      text-decoration: none;
+      color: #111111;
+    }
+
+    button mat-icon {
+      font-size: 1.5em;
+    }
+
+    mat-spinner {
+      display: inline-block;
+      margin-left: 5px;
+      text-align: center;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
   .container {
     width: calc(100% - 50px);
     margin: 0 auto;

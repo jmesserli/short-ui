@@ -12,7 +12,7 @@ import {NgModule, DoBootstrap, ApplicationRef} from '@angular/core';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {ShortComponent} from './short/short.component';
 import {ShortService} from './short/short.service';
-import {MatCard, MatCardModule} from '@angular/material';
+import {MatCard, MatCardModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
 
 const keycloakService = new KeycloakService();
 
@@ -28,6 +28,8 @@ const keycloakService = new KeycloakService();
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
     FormsModule,
     KeycloakAngularModule,
   ],
