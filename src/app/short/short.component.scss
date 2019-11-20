@@ -1,12 +1,24 @@
 :host {
 
+
   .input-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
   }
 
-  .flex-grow {
-    flex-grow: 1;
+  .long-url {
+    flex: 1 0 calc(100% - 45px);
+
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) {
+      flex: 1 0 calc(100% - 210px)
+    }
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+      flex: 1 0 50%;
+    }
   }
 
   .edit-button {
