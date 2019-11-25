@@ -4,6 +4,9 @@
       <mat-form-field appearance="fill" class="long-url mff-no-margin">
         <mat-label>URL to shorten</mat-label>
         <input matInput type="url" placeholder="https://lorem.ipsum/long/path" [(ngModel)]="url"/>
+        <button *ngIf="url" matSuffix mat-icon-button (click)="url=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <button mat-icon-button (click)="editing = !editing" class="edit-button">
         <mat-icon>{{editing ? 'chevron_right' : 'edit'}}</mat-icon>
@@ -14,6 +17,10 @@
       </mat-form-field>
     </div>
     <button mat-raised-button color="primary" (click)="shortenUrl()">Shorten</button>
-    <a *ngIf="result" href="https://peg.nu/{{result}}">https://peg.nu/{{result}}</a>
+
+    <span *ngIf="result" id="result">
+      <a [href]="result">{{result}}</a>
+      <mat-icon inline ngxClipboard [cbContent]="result" (cbOnSuccess)="onCopied()">file_copy</mat-icon>
+    </span>
   </mat-card>
 </div>

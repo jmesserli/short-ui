@@ -37,4 +37,15 @@
 
     height: 100vh;
   }
+
+  #result {
+    margin-left: 20px;
+
+    mat-icon {
+      position: relative;
+      top: 3px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  }
 }

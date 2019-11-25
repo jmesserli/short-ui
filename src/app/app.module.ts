@@ -12,7 +12,8 @@ import {NgModule, DoBootstrap, ApplicationRef} from '@angular/core';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {ShortComponent} from './short/short.component';
 import {ShortService} from './short/short.service';
-import {MatCard, MatCardModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatCard, MatCardModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule} from '@angular/material';
+import {ClipboardModule} from 'ngx-clipboard';
 
 const keycloakService = new KeycloakService();
 
@@ -22,16 +23,18 @@ const keycloakService = new KeycloakService();
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
+    ClipboardModule,
     FormsModule,
+    HttpClientModule,
     KeycloakAngularModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatToolbarModule,
   ],
   providers: [
     {

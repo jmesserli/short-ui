@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ShortService} from './short.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-short',
@@ -15,13 +16,25 @@ export class ShortComponent implements OnInit {
   editing: boolean;
   result: string;
 
-  constructor(private shortService: ShortService) {
+  constructor(private shortService: ShortService,
+              private snackbBar: MatSnackBar) {
   }
 
   ngOnInit() {
   }
 
   shortenUrl() {
-    this.shortService.shortenUrl({long: this.url, short: this.shortUrl}).subscribe(res => (this.result = res.link.short));
+    this.shortService.shortenUrl({
+      long: this.url,
+      short: this.shortUrl
+    }).subscribe(res => {
+      this.url = '';
+
+      return (this.result = `https://peg.nu/${res.link.short}`);
+    });
+  }
+
+  onCopied() {
+    this.snackbBar.open('Link copied!', null, {duration: 2000});
   }
 }
