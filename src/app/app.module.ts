@@ -12,7 +12,10 @@ import {NgModule, DoBootstrap, ApplicationRef} from '@angular/core';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {ShortComponent} from './short/short.component';
 import {ShortService} from './short/short.service';
-import {MatCard, MatCardModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule} from '@angular/material';
+import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ClipboardModule} from 'ngx-clipboard';
 
 const keycloakService = new KeycloakService();

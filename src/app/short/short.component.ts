@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ShortService} from './short.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-short',
