@@ -8,10 +8,10 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <button mat-icon-button (click)="editing = !editing" class="edit-button">
-        <mat-icon>{{editing ? 'chevron_right' : 'edit'}}</mat-icon>
+      <button mat-icon-button (click)="editingShortUrl = !editingShortUrl" class="edit-button">
+        <mat-icon>{{editingShortUrl ? 'chevron_right' : 'edit'}}</mat-icon>
       </button>
-      <mat-form-field appearance="fill" *ngIf="editing" class="short-url">
+      <mat-form-field appearance="fill" *ngIf="editingShortUrl" class="short-url">
         <mat-label>Short URL</mat-label>
         <input matInput type="text" [(ngModel)]="shortUrl">
       </mat-form-field>

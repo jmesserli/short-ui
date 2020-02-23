@@ -12,16 +12,18 @@ import {NgModule, DoBootstrap, ApplicationRef} from '@angular/core';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {ShortComponent} from './short/short.component';
 import {ShortService} from './short/short.service';
-import { MatCard, MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatCard, MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ClipboardModule} from 'ngx-clipboard';
+import {MatDialogModule} from "@angular/material/dialog";
+import { OverrideDialogComponent } from './override-dialog-component/override-dialog.component';
 
 const keycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, ShortComponent],
+  declarations: [AppComponent, ShortComponent, OverrideDialogComponent],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -38,6 +40,7 @@ const keycloakService = new KeycloakService();
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatDialogModule
   ],
   providers: [
     {
