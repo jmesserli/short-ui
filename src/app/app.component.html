@@ -15,5 +15,9 @@
     </button>
 
     <mat-spinner *ngIf="imageReloading" diameter="20"></mat-spinner>
+
+    <span *ngIf="isImageClearingAllowed">
+      {{ getRelativeExpirationTime(image.updatedAt, image.expireDuration) }}
+    </span>
   </div>
 </div>
