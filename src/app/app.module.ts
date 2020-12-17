@@ -21,6 +21,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { OverrideDialogComponent } from './override-dialog-component/override-dialog.component';
 import { UserLinksComponent } from './user-links/user-links.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { ConfirmDeleteLinkDialog } from './confirm-dialog/confirm-delete-link-dialog.component';
 
 const keycloakService = new KeycloakService();
 
@@ -30,6 +34,7 @@ const keycloakService = new KeycloakService();
     ShortComponent,
     OverrideDialogComponent,
     UserLinksComponent,
+    ConfirmDeleteLinkDialog,
   ],
   imports: [
     AppRoutingModule,
@@ -49,6 +54,9 @@ const keycloakService = new KeycloakService();
     MatToolbarModule,
     MatDialogModule,
     MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     {

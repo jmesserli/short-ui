@@ -1,28 +1,29 @@
 <div>
   <mat-card>
-    <mat-table [dataSource]="tableData">
-
-
+    <mat-table [dataSource]="tableData" matSort>
       <ng-container matColumnDef="short">
-        <mat-header-cell *matHeaderCellDef>Short Link</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Short Link</mat-header-cell>
         <mat-cell *matCellDef="let link">{{ link.short }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="long">
-        <mat-header-cell *matHeaderCellDef>Expanded Link</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Expanded Link</mat-header-cell>
         <mat-cell *matCellDef="let link" class="wrap">{{ link.long }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *matCellDef="let link">
-          <!--todo-->
+          <button mat-icon-button (click)="removeLink(link)" matTooltip="Delete link permanently">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
-
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let link; columns: displayedColumns"></mat-row>
     </mat-table>
+
+    <mat-paginator #paginator></mat-paginator>
   </mat-card>
 </div>
