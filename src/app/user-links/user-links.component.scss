@@ -1,0 +1,28 @@
+:host {
+
+  > div {
+    height: calc(100vh - 100px);
+    padding: 50px 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .mat-cell, .mat-header-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+  }
+
+  .mat-column-short {
+    flex: 0 0 10%;
+  }
+
+  .mat-column-long {
+    flex: 0 0 80%;
+  }
+
+  .mat-column-actions {
+    flex: 0 0 10%;
+  }
+}

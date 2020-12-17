@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+
 @include mat-core;
 
 $short-app-primary: mat-palette($mat-pink, 300);
@@ -15,4 +16,22 @@ body {
 body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin: 0;
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: mat-color($short-app-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    opacity: 0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: mat-color($short-app-primary);
+    border-radius: 2.5px;
+  }
 }

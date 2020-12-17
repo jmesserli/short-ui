@@ -19,11 +19,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClipboardModule } from 'ngx-clipboard';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OverrideDialogComponent } from './override-dialog-component/override-dialog.component';
+import { UserLinksComponent } from './user-links/user-links.component';
+import { MatTableModule } from '@angular/material/table';
 
 const keycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, ShortComponent, OverrideDialogComponent],
+  declarations: [
+    AppComponent,
+    ShortComponent,
+    OverrideDialogComponent,
+    UserLinksComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -40,14 +47,15 @@ const keycloakService = new KeycloakService();
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
   ],
   providers: [
     {
       provide: KeycloakService,
       useValue: keycloakService,
     },
-    ShortService
+    ShortService,
   ],
   entryComponents: [AppComponent],
 })
@@ -72,7 +80,7 @@ export class AppModule implements DoBootstrap {
 
         app.bootstrap(AppComponent);
       })
-      .catch(error =>
+      .catch((error) =>
         console.error('[ngDoBootstrap] keycloak init failed', error)
       );
   }
