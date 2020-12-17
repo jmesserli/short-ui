@@ -4,10 +4,10 @@
 
   <p>
     Target URL: <a [href]="data.url">{{ data.url }}</a><br>
-    Created by: <span>{{data.user}}</span>
+    Created by: <span>{{data.user_name}}</span>
   </p>
 
-  <ng-container *ngIf="!mayOverride; else mayOverrideText">
+  <ng-container *ngIf="!hasGlobalOverridePermissions; else mayOverrideText">
     <p class="mat-error">You do not have permission to overwrite links.</p>
   </ng-container>
 
@@ -16,7 +16,7 @@
   </ng-template>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <ng-container *ngIf="!mayOverride; else mayOverrideBtn">
+  <ng-container *ngIf="!hasGlobalOverridePermissions; else mayOverrideBtn">
     <button mat-button mat-dialog-close="false" cdkFocusInitial>Ok</button>
   </ng-container>
 
