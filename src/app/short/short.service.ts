@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CreateLink } from './model/create-link.model';
+import { CreateLink } from '../model/create-link.model';
 import { Observable } from 'rxjs';
-import { CreateLinkResponse } from './model/create-link-response.model';
-import { ExistsResponse } from './model/exists-response.model';
-import { StatusResponse } from './model/status-response.model';
-import { UserLinksResponse } from './model/user-links-response.model';
+import { CreateLinkResponse } from '../model/create-link-response.model';
+import { ExistsResponse } from '../model/exists-response.model';
+import { StatusResponse } from '../model/status-response.model';
+import { UserLinksResponse } from '../model/user-links-response.model';
 
 @Injectable({
   providedIn: 'root',

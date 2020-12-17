@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { KeycloakService } from 'keycloak-angular';
-import { ExistsResponse } from '../short/model/exists-response.model';
+import { ExistsResponse } from '../model/exists-response.model';
 
 @Component({
   selector: 'app-override-dialog-component',

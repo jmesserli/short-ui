@@ -3,24 +3,45 @@
     <div class="input-row">
       <mat-form-field appearance="fill" class="long-url mff-no-margin">
         <mat-label>URL to shorten</mat-label>
-        <input matInput type="url" placeholder="https://lorem.ipsum/long/path" [(ngModel)]="url"/>
-        <button *ngIf="url" matSuffix mat-icon-button (click)="url=''">
+        <input
+          matInput
+          type="url"
+          placeholder="https://lorem.ipsum/long/path"
+          [(ngModel)]="url"
+        />
+        <button *ngIf="url" matSuffix mat-icon-button (click)="url = ''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <button mat-icon-button (click)="editingShortUrl = !editingShortUrl" class="edit-button">
-        <mat-icon>{{editingShortUrl ? 'chevron_right' : 'edit'}}</mat-icon>
+      <button
+        mat-icon-button
+        (click)="editingShortUrl = !editingShortUrl"
+        class="edit-button"
+      >
+        <mat-icon>{{ editingShortUrl ? 'chevron_right' : 'edit' }}</mat-icon>
       </button>
-      <mat-form-field appearance="fill" *ngIf="editingShortUrl" class="short-url">
+      <mat-form-field
+        appearance="fill"
+        *ngIf="editingShortUrl"
+        class="short-url"
+      >
         <mat-label>Short URL</mat-label>
-        <input matInput type="text" [(ngModel)]="shortUrl">
+        <input matInput type="text" [(ngModel)]="shortUrl" />
       </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" (click)="shortenUrl()">Shorten</button>
+    <button mat-raised-button color="primary" (click)="shortenUrl()">
+      Shorten
+    </button>
 
     <span *ngIf="result" id="result">
-      <a [href]="result">{{result}}</a>
-      <mat-icon inline ngxClipboard [cbContent]="result" (cbOnSuccess)="onCopied()">file_copy</mat-icon>
+      <a [href]="result">{{ result }}</a>
+      <mat-icon
+        inline
+        ngxClipboard
+        [cbContent]="result"
+        (cbOnSuccess)="onCopied()"
+        >file_copy</mat-icon
+      >
     </span>
   </mat-card>
 </div>
