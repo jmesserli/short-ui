@@ -3,7 +3,7 @@ import { Config } from '../services/config.service';
 export const config: Config = {
   keycloakConfig: {
     clientId: 'short',
-    url: 'https://id.peg.nu',
+    url: 'https://id.peg.nu/auth',
     realm: 'PegNu',
   },
   analyticsConfig: {
