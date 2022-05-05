@@ -8,7 +8,7 @@ export const config: Config = {
   },
   analyticsConfig: {
     plausible: {
-      enabled: false,
+      enabled: true,
       domain: 'short.peg.nu',
       scriptUrl: 'https://canihaz.pegnu.dev/js/index.js',
     },
