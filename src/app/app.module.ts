@@ -25,56 +25,57 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ConfirmDeleteLinkDialog } from './components/confirm-dialog/confirm-delete-link-dialog.component';
+import { ConfigService } from './services/config.service';
 
 const keycloakService = new KeycloakService();
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        ShortComponent,
-        OverrideDialogComponent,
-        UserLinksComponent,
-        ConfirmDeleteLinkDialog,
-    ],
-    imports: [
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        ClipboardModule,
-        FormsModule,
-        HttpClientModule,
-        KeycloakAngularModule,
-        MatButtonModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        MatDialogModule,
-        MatTableModule,
-        MatTooltipModule,
-        MatPaginatorModule,
-        MatSortModule,
-    ],
-    providers: [
-        {
-            provide: KeycloakService,
-            useValue: keycloakService,
-        },
-        ShortService,
-    ]
+  declarations: [
+    AppComponent,
+    ShortComponent,
+    OverrideDialogComponent,
+    UserLinksComponent,
+    ConfirmDeleteLinkDialog,
+  ],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    ClipboardModule,
+    FormsModule,
+    HttpClientModule,
+    KeycloakAngularModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
+  ],
+  providers: [
+    {
+      provide: KeycloakService,
+      useValue: keycloakService,
+    },
+    ShortService,
+  ],
 })
 export class AppModule implements DoBootstrap {
+
+  constructor(private configService: ConfigService) {
+  }
+
   ngDoBootstrap(app: ApplicationRef) {
     keycloakService
       .init({
-        config: {
-          clientId: 'short',
-          url: 'https://id.peg.nu/auth/',
-          realm: 'PegNu',
-        },
+        config: this.configService.config.keycloakConfig,
         initOptions: {
           onLoad: 'login-required',
           checkLoginIframe: false,
@@ -83,12 +84,10 @@ export class AppModule implements DoBootstrap {
         bearerExcludedUrls: ['/assets'],
       })
       .then(() => {
-        console.log('[ngDoBootstrap] bootstrapping');
-
         app.bootstrap(AppComponent);
       })
       .catch((error) =>
-        console.error('[ngDoBootstrap] keycloak init failed', error)
+        console.error('[ngDoBootstrap] keycloak init failed', error),
       );
   }
 }
