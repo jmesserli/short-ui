@@ -1,8 +1,8 @@
-import { ShortComponent } from './short/short.component';
-import { LoggedInGuard } from './logged-in.guard';
+import { ShortComponent } from './pages/short/short.component';
+import { LoggedInGuard } from './guards/logged-in.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserLinksComponent } from './user-links/user-links.component';
+import { UserLinksComponent } from './pages/user-links/user-links.component';
 
 const routes: Routes = [
   {

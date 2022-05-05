@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
-import {Image} from './image.model';
+import {Image} from './model/image.model';
 import {KeycloakService} from 'keycloak-angular';
 import * as moment from 'moment';
 

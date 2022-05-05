@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShortService } from '../short/short.service';
-import { Link } from '../model/link.model';
+import { Link } from '../../model/link.model';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDeleteLinkDialog } from '../confirm-dialog/confirm-delete-link-dialog.component';
+import { ConfirmDeleteLinkDialog } from '../../components/confirm-dialog/confirm-delete-link-dialog.component';
 
 @Component({
   selector: 'app-user-links',

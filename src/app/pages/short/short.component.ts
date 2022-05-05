@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ShortService } from './short.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { OverrideDialogComponent } from '../override-dialog-component/override-dialog.component';
+import { OverrideDialogComponent } from '../../components/override-dialog-component/override-dialog.component';
 import { filter } from 'rxjs/operators';
 
 @Component({

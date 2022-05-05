@@ -1,12 +1,13 @@
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
 
-@include mat-core;
+@include mat.core;
 
-$short-app-primary: mat-palette($mat-pink, 300);
-$short-app-accent: mat-palette($mat-blue, A100);
-$short-app-theme: mat-light-theme($short-app-primary, $short-app-accent);
+$short-app-primary: mat.define-palette(mat.$pink-palette, 300);
+$short-app-accent: mat.define-palette(mat.$blue-palette, A100);
+$short-app-theme: mat.define-light-theme($short-app-primary, $short-app-accent);
 
-@include angular-material-theme($short-app-theme);
+@include mat.all-component-themes($short-app-theme);
 
 html,
 body {
@@ -19,7 +20,7 @@ body {
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: mat-color($short-app-primary);
+    scrollbar-color: mat.get-color-from-palette($short-app-primary);
   }
 
   ::-webkit-scrollbar {
@@ -31,7 +32,7 @@ body {
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: mat-color($short-app-primary);
+    background-color: mat.get-color-from-palette($short-app-primary);
     border-radius: 2.5px;
   }
 }
