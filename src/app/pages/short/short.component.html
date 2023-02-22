@@ -1,51 +1,60 @@
 <div class="full-height-centered">
-  <mat-card appearance="outlined">
-    <div class="input-row">
-      <mat-form-field appearance="fill" class="long-url mff-no-margin">
-        <mat-label>URL to shorten</mat-label>
-        <input
-          matInput
-          type="url"
-          placeholder="https://lorem.ipsum/long/path"
-          [(ngModel)]="url"
-        />
-        <button *ngIf="url" matSuffix mat-icon-button (click)="url = ''">
-          <mat-icon>close</mat-icon>
+  <mat-card appearance="outlined" class="card-padding">
+    <mat-card-content>
+      <div class="input-row">
+        <mat-form-field appearance="outline" class="long-url mff-no-margin">
+          <mat-label>URL to shorten</mat-label>
+          <input
+            matInput
+            type="url"
+            placeholder="https://lorem.ipsum/long/path"
+            [(ngModel)]="url"
+          />
+          <button *ngIf="url" matSuffix mat-icon-button (click)="url = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button
+          mat-icon-button
+          (click)="editingShortUrl = !editingShortUrl"
+          class="edit-button"
+        >
+          <mat-icon>{{ editingShortUrl ? 'chevron_right' : 'edit' }}</mat-icon>
         </button>
-      </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          *ngIf="editingShortUrl"
+          class="short-url"
+        >
+          <mat-label>Short URL</mat-label>
+          <input matInput type="text" [(ngModel)]="shortUrl" />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="shortenUrl()">
+        Shorten
+      </button>
+
       <button
         mat-icon-button
-        (click)="editingShortUrl = !editingShortUrl"
-        class="edit-button"
+        [routerLink]="['/', 'links']"
+        matTooltip="My links"
       >
-        <mat-icon>{{ editingShortUrl ? 'chevron_right' : 'edit' }}</mat-icon>
+        <mat-icon>list</mat-icon>
       </button>
-      <mat-form-field
-        appearance="fill"
-        *ngIf="editingShortUrl"
-        class="short-url"
-      >
-        <mat-label>Short URL</mat-label>
-        <input matInput type="text" [(ngModel)]="shortUrl"/>
-      </mat-form-field>
-    </div>
-    <button mat-raised-button color="primary" (click)="shortenUrl()">
-      Shorten
-    </button>
 
-    <button mat-icon-button [routerLink]="['/', 'links']" matTooltip="My links">
-      <mat-icon>list</mat-icon>
-    </button>
-
-    <span *ngIf="result" id="result">
-      <a [href]="result">{{ result }}</a>
-      <mat-icon
-        inline
-        ngxClipboard
-        [cbContent]="result"
-        (cbOnSuccess)="onCopied()"
-      >file_copy</mat-icon
-      >
-    </span>
+      <span *ngIf="result" id="result">
+        <a [href]="result">{{ result }}</a>
+        <mat-icon
+          inline
+          ngxClipboard
+          [cbContent]="result"
+          (cbOnSuccess)="onCopied()"
+          >file_copy</mat-icon
+        >
+      </span>
+    </mat-card-actions>
   </mat-card>
 </div>

@@ -19,7 +19,7 @@
 
     height: 20px;
 
-    margin: 0 0 20px 20px;
+    margin: 0 0 15px 15px;
     padding: 5px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.5);
@@ -33,13 +33,9 @@
       color: #111111;
     }
 
-    button mat-icon {
-      font-size: 1.5em;
-    }
-
     mat-spinner {
-      display: inline-block;
-      margin-left: 5px;
+      margin-left: .25em;
+      margin-right: .25em;
       text-align: center;
     }
 
@@ -53,26 +49,7 @@
   }
 
   .container {
-    width: calc(100% - 50px);
+    max-width: calc(min(1500px, 100vw - 30px));
     margin: 0 auto;
-
-    // Small devices (landscape phones, 576px and up)
-    @media (min-width: 576px) {
-    }
-
-    // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) {
-      width: 80%;
-    }
-
-    // Large devices (desktops, 992px and up)
-    @media (min-width: 992px) {
-
-    }
-
-    // Extra large devices (large desktops, 1200px and up)
-    @media (min-width: 1200px) {
-      width: 60%;
-    }
   }
 }
