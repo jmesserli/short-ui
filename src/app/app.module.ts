@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ShortComponent } from './pages/short/short.component';
-import { ShortService } from './pages/short/short.service';
+import { ShortService } from './services/short.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';

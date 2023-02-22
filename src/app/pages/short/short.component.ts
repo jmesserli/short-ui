@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ShortService } from './short.service';
+import { ShortService } from '../../services/short.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { OverrideDialogComponent } from '../../components/override-dialog-component/override-dialog.component';
 import { filter } from 'rxjs/operators';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-short',
@@ -19,11 +20,16 @@ export class ShortComponent implements OnInit, OnDestroy {
   public editingShortUrl: boolean;
   public result: string;
 
+  private baseUrl: string;
+
   constructor(
     private shortService: ShortService,
+    config: ConfigService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.baseUrl = config.config.shortlinkConfig.baseUrl;
+  }
 
   ngOnInit() {}
 
@@ -57,7 +63,7 @@ export class ShortComponent implements OnInit, OnDestroy {
         this.url = '';
         this.shortUrl = '';
 
-        return (this.result = `https://peg.nu/${res.link.short}`);
+        return (this.result = `${this.baseUrl}/${res.link.short}`);
       });
   }
 

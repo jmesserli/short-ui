@@ -1,6 +1,12 @@
 import { Config } from '../services/config.service';
 
 export const config: Config = {
+  apiConfig: {
+    baseUrl: 'https://peg.nu/api',
+  },
+  shortlinkConfig: {
+    baseUrl: 'https://peg.nu',
+  },
   keycloakConfig: {
     clientId: 'pegnu-short',
     url: 'https://auth.pegnu.dev',

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ShortService } from '../short/short.service';
+import { ShortService } from '../../services/short.service';
 import { Link } from '../../model/link.model';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
