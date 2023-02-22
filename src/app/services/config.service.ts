@@ -3,18 +3,22 @@ import { config as devConfig } from '../config/dev-config';
 import { config as prdConfig } from '../config/prd-config';
 
 export interface Config {
+  apiConfig: {
+    baseUrl: string;
+  };
+  shortlinkConfig: {
+    baseUrl: string;
+  };
   keycloakConfig: {
-    clientId: string,
-    url: string,
-    realm: string,
+    clientId: string;
+    url: string;
+    realm: string;
   };
-  analyticsConfig: {
-    plausible: {
-      enabled: boolean,
-      domain?: string,
-      scriptUrl?: string
-    }
-  };
+  additionalScripts: {
+    url: string;
+    attributes: Record<string, string>;
+    enabled: boolean;
+  }[];
 }
 
 interface ConfigEntry {
@@ -41,7 +45,6 @@ export class ConfigService {
   ];
   private readonly activeConfig: ConfigEntry;
 
-
   constructor() {
     const hostname = window.location.hostname;
 
@@ -61,5 +64,4 @@ export class ConfigService {
   public get config(): Config {
     return { ...this.activeConfig.value };
   }
-
 }

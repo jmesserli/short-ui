@@ -1,16 +1,17 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ShortService } from './short.service';
+import { Component, Input } from '@angular/core';
+import { ShortService } from '../../services/short.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { OverrideDialogComponent } from '../../components/override-dialog-component/override-dialog.component';
 import { filter } from 'rxjs/operators';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-short',
   templateUrl: './short.component.html',
   styleUrls: ['./short.component.scss'],
 })
-export class ShortComponent implements OnInit, OnDestroy {
+export class ShortComponent {
   @Input()
   public url: string;
   @Input()
@@ -19,15 +20,16 @@ export class ShortComponent implements OnInit, OnDestroy {
   public editingShortUrl: boolean;
   public result: string;
 
+  private baseUrl: string;
+
   constructor(
     private shortService: ShortService,
+    config: ConfigService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
-  ) {}
-
-  ngOnInit() {}
-
-  ngOnDestroy(): void {}
+  ) {
+    this.baseUrl = config.config.shortlinkConfig.baseUrl;
+  }
 
   shortenUrl() {
     if (this.shortUrl && this.shortUrl !== '') {
@@ -36,7 +38,7 @@ export class ShortComponent implements OnInit, OnDestroy {
           this.dialog
             .open(OverrideDialogComponent, { data: res })
             .afterClosed()
-            .pipe(filter((res) => res === 'true'))
+            .pipe(filter((result) => result === 'true'))
             .subscribe(this._doShorten.bind(this));
         } else {
           this._doShorten();
@@ -57,7 +59,7 @@ export class ShortComponent implements OnInit, OnDestroy {
         this.url = '';
         this.shortUrl = '';
 
-        return (this.result = `https://peg.nu/${res.link.short}`);
+        return (this.result = `${this.baseUrl}/${res.link.short}`);
       });
   }
 

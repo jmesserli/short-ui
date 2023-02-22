@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  CanActivate,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot,
+  CanActivate,
   Router,
+  RouterStateSnapshot,
 } from '@angular/router';
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
@@ -24,7 +24,7 @@ export class LoggedInGuard extends KeycloakAuthGuard implements CanActivate {
   ): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (!this.authenticated) {
-        this.keycloakService.login().catch(err => console.error(err));
+        this.keycloakService.login().catch((err) => console.error(err));
         return reject(false);
       }
 

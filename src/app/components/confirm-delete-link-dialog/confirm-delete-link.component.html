@@ -3,7 +3,9 @@
   <p>Do you want to delete the following short link permanently?</p>
 
   <p>
-    Short URL: <a [href]="'https://peg.nu/' + data.short">https://peg.nu/{{data.short}}</a><br/>
+    Short URL:
+    <a [href]="baseUrl + '/' + data.short">{{ baseUrl }}/{{ data.short }}</a
+    ><br />
     Created by: <span>{{ data.user_name }}</span>
   </p>
 </mat-dialog-content>

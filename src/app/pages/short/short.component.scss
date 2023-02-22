@@ -1,6 +1,5 @@
 :host {
 
-
   .input-row {
     display: flex;
     flex-wrap: wrap;
@@ -39,12 +38,16 @@
   }
 
   #result {
-    margin-left: 20px;
+    display: flex;
+    align-items: center;
+
+    margin-left: 1em;
+
+    a {
+      margin-right: .5em;
+    }
 
     mat-icon {
-      position: relative;
-      top: 3px;
-      margin-left: 5px;
       cursor: pointer;
     }
   }

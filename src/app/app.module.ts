@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ShortComponent } from './pages/short/short.component';
-import { ShortService } from './pages/short/short.service';
+import { ShortService } from './services/short.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -24,7 +24,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { ConfirmDeleteLinkDialog } from './components/confirm-dialog/confirm-delete-link-dialog.component';
+import { ConfirmDeleteLinkComponent } from './components/confirm-delete-link-dialog/confirm-delete-link.component';
 import { ConfigService } from './services/config.service';
 
 const keycloakService = new KeycloakService();
@@ -35,7 +35,7 @@ const keycloakService = new KeycloakService();
     ShortComponent,
     OverrideDialogComponent,
     UserLinksComponent,
-    ConfirmDeleteLinkDialog,
+    ConfirmDeleteLinkComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -68,9 +68,7 @@ const keycloakService = new KeycloakService();
   ],
 })
 export class AppModule implements DoBootstrap {
-
-  constructor(private configService: ConfigService) {
-  }
+  constructor(private configService: ConfigService) {}
 
   ngDoBootstrap(app: ApplicationRef) {
     keycloakService
@@ -87,7 +85,7 @@ export class AppModule implements DoBootstrap {
         app.bootstrap(AppComponent);
       })
       .catch((error) =>
-        console.error('[ngDoBootstrap] keycloak init failed', error),
+        console.error('[ngDoBootstrap] keycloak init failed', error)
       );
   }
 }

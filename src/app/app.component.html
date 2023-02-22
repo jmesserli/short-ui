@@ -4,17 +4,28 @@
   </div>
 
   <div id="unsplash-attribution" *ngIf="backgroundImage$ | async as image">
-      <span>
-        <a
-          href="https://unsplash.com/@{{ image.photographerUsername }}?utm_source=pegnu_short&utm_medium=referral">{{ image.photographerName }}</a>
-        on <a href="https://unsplash.com/?utm_source=pegnu_short&utm_medium=referral">Unsplash</a>
-      </span>
+    <span>
+      <a
+        href="https://unsplash.com/@{{
+          image.photographerUsername
+        }}?utm_source=pegnu_short&utm_medium=referral"
+        >{{ image.photographerName }}</a
+      >
+      on
+      <a href="https://unsplash.com/?utm_source=pegnu_short&utm_medium=referral"
+        >Unsplash</a
+      >
+    </span>
 
-    <button mat-icon-button *ngIf="isImageClearingAllowed && !imageReloading" (click)="clearImage()">
-      <mat-icon inline>refresh</mat-icon>
+    <button
+      mat-icon-button
+      *ngIf="isImageClearingAllowed && !imageReloading"
+      (click)="clearImage()"
+    >
+      <mat-icon>refresh</mat-icon>
     </button>
 
-    <mat-spinner *ngIf="imageReloading" diameter="20"></mat-spinner>
+    <mat-spinner *ngIf="imageReloading" diameter="19"></mat-spinner>
 
     <span *ngIf="isImageClearingAllowed">
       {{ getRelativeExpirationTime(image.updatedAt, image.expireDuration) }}

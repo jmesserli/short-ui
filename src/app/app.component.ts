@@ -6,6 +6,7 @@ import { Image } from './model/image.model';
 import { KeycloakService } from 'keycloak-angular';
 import * as moment from 'moment';
 import { ConfigService } from './services/config.service';
+import { ShortService } from './services/short.service';
 
 @Component({
   selector: 'app-root',
@@ -18,52 +19,67 @@ export class AppComponent implements OnInit {
   isImageClearingAllowed: boolean;
   imageReloading: boolean;
 
-  constructor(private http: HttpClient,
-              private keycloak: KeycloakService,
-              private configService: ConfigService) {
-    this.backgroundImage$ = http.get<any>('https://peg.nu/api/unsplash/image').pipe(
-      map(img => new Image(img.image_url, img.photographer_name, img.photographer_username, img.updated_at, img.expiration_duration)),
-      shareReplay(1),
-    );
+  constructor(
+    private http: HttpClient,
+    private keycloak: KeycloakService,
+    private configService: ConfigService,
+    private shortService: ShortService
+  ) {
+    this.backgroundImage$ = this.shortService
+      .getBackgroundImage()
+      .pipe(shareReplay(1));
 
     this.backgroundUrlCss$ = this.backgroundImage$.pipe(
-      map((img: Image) => `url(${img.imageUrl})`),
+      map((img) => `url(${img.imageUrl})`)
     );
 
-    this.isImageClearingAllowed = keycloak.getUserRoles().filter(role => role === 'PegNu-Short.CLEAR-BACKGROUND').length > 0;
+    this.isImageClearingAllowed =
+      keycloak
+        .getUserRoles()
+        .filter((role) => role === 'PegNu-Short.CLEAR-BACKGROUND').length > 0;
   }
 
   ngOnInit(): void {
-    const plausibleCfg = this.configService.config.analyticsConfig.plausible;
+    const scripts = this.configService.config.additionalScripts;
 
-    if (!plausibleCfg.enabled) {
-      return;
+    for (const script of scripts) {
+      if (!script.enabled) {
+        continue;
+      }
+
+      const scriptEl: HTMLScriptElement = document.createElement('script');
+      scriptEl.src = script.url;
+
+      for (const attribute of Object.getOwnPropertyNames(script.attributes)) {
+        scriptEl.setAttribute(attribute, script.attributes[attribute]);
+      }
+
+      document.head.appendChild(scriptEl);
     }
-
-    const script = document.createElement('script');
-    script.src = plausibleCfg.scriptUrl;
-    script.async = true;
-    script.defer = true;
-    script.setAttribute('data-domain', plausibleCfg.domain);
-    document.getElementsByTagName('head')[0].appendChild(script);
   }
 
   clearImage() {
     this.imageReloading = true;
 
-    this.http.get<any>('https://peg.nu/api/unsplash/clear').pipe(
-      map(res => res.status === 'ok'),
-    ).subscribe(success => {
-      if (!success) {
-        this.imageReloading = false;
-        return;
-      }
+    this.shortService
+      .clearBackgroundImage()
+      .pipe(map((res) => res.status === 'ok'))
+      .subscribe((success) => {
+        if (!success) {
+          this.imageReloading = false;
+          return;
+        }
 
-      window.location.reload();
-    });
+        window.location.reload();
+      });
   }
 
-  getRelativeExpirationTime(updateTime: string, expirationDuration: number): string {
-    return moment(updateTime).add(expirationDuration / 1000000, 'ms').fromNow();
+  getRelativeExpirationTime(
+    updateTime: string,
+    expirationDuration: number
+  ): string {
+    return moment(updateTime)
+      .add(expirationDuration / 1000000, 'ms')
+      .fromNow();
   }
 }
