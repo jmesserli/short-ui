@@ -14,13 +14,11 @@ export interface Config {
     url: string;
     realm: string;
   };
-  analyticsConfig: {
-    plausible: {
-      enabled: boolean;
-      domain?: string;
-      scriptUrl?: string;
-    };
-  };
+  additionalScripts: {
+    url: string;
+    attributes: Record<string, string>;
+    enabled: boolean;
+  }[];
 }
 
 interface ConfigEntry {

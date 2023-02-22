@@ -40,18 +40,22 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const plausibleCfg = this.configService.config.analyticsConfig.plausible;
+    const scripts = this.configService.config.additionalScripts;
 
-    if (!plausibleCfg.enabled) {
-      return;
+    for (const script of scripts) {
+      if (!script.enabled) {
+        continue;
+      }
+
+      const scriptEl: HTMLScriptElement = document.createElement('script');
+      scriptEl.src = script.url;
+
+      for (const attribute of Object.getOwnPropertyNames(script.attributes)) {
+        scriptEl.setAttribute(attribute, script.attributes[attribute]);
+      }
+
+      document.head.appendChild(scriptEl);
     }
-
-    const script = document.createElement('script');
-    script.src = plausibleCfg.scriptUrl;
-    script.async = true;
-    script.defer = true;
-    script.setAttribute('data-domain', plausibleCfg.domain);
-    document.getElementsByTagName('head')[0].appendChild(script);
   }
 
   clearImage() {
