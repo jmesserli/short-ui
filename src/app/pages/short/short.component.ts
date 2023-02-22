@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShortService } from '../../services/short.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { ConfigService } from '../../services/config.service';
   templateUrl: './short.component.html',
   styleUrls: ['./short.component.scss'],
 })
-export class ShortComponent implements OnInit, OnDestroy {
+export class ShortComponent {
   @Input()
   public url: string;
   @Input()
@@ -31,10 +31,6 @@ export class ShortComponent implements OnInit, OnDestroy {
     this.baseUrl = config.config.shortlinkConfig.baseUrl;
   }
 
-  ngOnInit() {}
-
-  ngOnDestroy(): void {}
-
   shortenUrl() {
     if (this.shortUrl && this.shortUrl !== '') {
       this.shortService.linkExists(this.shortUrl).subscribe((res) => {
@@ -42,7 +38,7 @@ export class ShortComponent implements OnInit, OnDestroy {
           this.dialog
             .open(OverrideDialogComponent, { data: res })
             .afterClosed()
-            .pipe(filter((res) => res === 'true'))
+            .pipe(filter((result) => result === 'true'))
             .subscribe(this._doShorten.bind(this));
         } else {
           this._doShorten();

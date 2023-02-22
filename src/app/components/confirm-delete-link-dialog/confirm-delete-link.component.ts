@@ -4,18 +4,17 @@ import { Link } from '../../model/link.model';
 import { ConfigService } from '../../services/config.service';
 
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-delete-link-dialog.component.html',
-  styleUrls: ['./confirm-delete-link-dialog.component.scss'],
+  selector: 'app-confirm-delete-link',
+  templateUrl: './confirm-delete-link.component.html',
+  styleUrls: ['./confirm-delete-link.component.scss'],
 })
-export class ConfirmDeleteLinkDialog {
+export class ConfirmDeleteLinkComponent {
   baseUrl: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Link,
-    config: ConfigService,
+    config: ConfigService
   ) {
     this.baseUrl = config.config.shortlinkConfig.baseUrl;
   }
-
 }

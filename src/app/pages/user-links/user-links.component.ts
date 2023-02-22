@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDeleteLinkDialog } from '../../components/confirm-dialog/confirm-delete-link-dialog.component';
+import { ConfirmDeleteLinkComponent } from '../../components/confirm-delete-link-dialog/confirm-delete-link.component';
 
 @Component({
   selector: 'app-user-links',
@@ -34,7 +34,7 @@ export class UserLinksComponent implements OnInit {
 
   removeLink(link: Link) {
     this.dialog
-      .open(ConfirmDeleteLinkDialog, { data: link })
+      .open(ConfirmDeleteLinkComponent, { data: link })
       .afterClosed()
       .pipe(
         filter((res) => res === 'true'),
