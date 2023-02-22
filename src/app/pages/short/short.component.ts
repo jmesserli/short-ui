@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ShortService } from '../../services/short.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { OverrideDialogComponent } from '../../components/override-dialog-component/override-dialog.component';
 import { filter } from 'rxjs/operators';
 import { ConfigService } from '../../services/config.service';
